@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>759</width>
-    <height>535</height>
+    <width>1259</width>
+    <height>702</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -394,7 +394,7 @@ QPushButton
         <number>0</number>
        </property>
        <item>
-        <widget class="QWidget" name="LineWidget" native="true"/>
+        <widget class="QOpenGLWidget" name="ViewWidget"/>
        </item>
       </layout>
      </widget>

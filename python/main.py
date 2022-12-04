@@ -1,9 +1,10 @@
-from asyncio.windows_events import NULL
 import sys, os
 from PyQt5.QtWidgets import QApplication
 from PyQt5.Qt import *
 from PyQt5 import QtGui, QtCore
+from PyQt5.QtCore import QUrl
 from PyQt5.QtGui import QIcon
+from PyQt5.QtWebEngineWidgets import QWebEngineView
 import threading
 import time, datetime
 
@@ -36,9 +37,13 @@ class MainFrame(QObject):
         update_time_thread = threading.Thread(target=self.UpdateTime)
         update_time_thread.start()
 
-        # K线图
-        self.klines_ts_codes = None
         self.FlatWidget_.resizeEvent = self.WindowReiszeEvent
+        self.view_layout = QVBoxLayout(self.MainWindow_.ViewWidget)
+        self.view_layout.setContentsMargins(0, 0, 0, 0)
+        self.browser = QWebEngineView()
+        self.netron_file = os.getcwd() + os.path.sep + "thirdparty/netron/index.html"
+        self.view_layout.addWidget(self.browser)
+        self.browser.load(QUrl.fromLocalFile(self.netron_file))
 
 
     # ----------------------------------------- UI -----------------------------------------
@@ -64,7 +69,7 @@ class MainFrame(QObject):
 
 
     def Close(self):
-        self.FlatWidget_.Close(NULL)
+        self.FlatWidget_.Close(None)
 
     # ----------------------------------------- UI end ----------------------------------------
     def SetCurrentTime(self):
@@ -78,8 +83,7 @@ class MainFrame(QObject):
             time.sleep(1)
 
 if __name__ == '__main__':
-    QCoreApplication.setAttribute(Qt.AA_UseSoftwareOpenGL,True)
-    app = QApplication(sys.argv)
+    app = QApplication(sys.argv + ["--no-sandbox"])
     MainWindow = FlatWidget()
     ui=ui.Ui_MainFrame.Ui_Form()
     ui.setupUi(MainWindow.windowContent)

@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-# Form implementation generated from reading ui file 'e:\workspace\FlatWidget\python\ui\MainFrame.ui'
+# Form implementation generated from reading ui file 'e:\workspace\PrivateSoft\YMAssistant\python\ui\MainFrame.ui'
 #
 # Created by: PyQt5 UI code generator 5.9.2
 #
@@ -11,7 +11,7 @@ from PyQt5 import QtCore, QtGui, QtWidgets
 class Ui_Form(object):
     def setupUi(self, Form):
         Form.setObjectName("Form")
-        Form.resize(759, 535)
+        Form.resize(1259, 702)
         Form.setMinimumSize(QtCore.QSize(640, 480))
         Form.setMouseTracking(True)
         Form.setStyleSheet("background-color: rgb(7, 7, 7);")
@@ -168,9 +168,9 @@ class Ui_Form(object):
         self.horizontalLayout_7.setContentsMargins(0, 0, 0, 0)
         self.horizontalLayout_7.setSpacing(0)
         self.horizontalLayout_7.setObjectName("horizontalLayout_7")
-        self.LineWidget = QtWidgets.QWidget(self.main_page)
-        self.LineWidget.setObjectName("LineWidget")
-        self.horizontalLayout_7.addWidget(self.LineWidget)
+        self.ViewWidget = QtWidgets.QOpenGLWidget(self.main_page)
+        self.ViewWidget.setObjectName("ViewWidget")
+        self.horizontalLayout_7.addWidget(self.ViewWidget)
         self.DisplayStackedWidget.addWidget(self.main_page)
         self.verticalLayout.addWidget(self.DisplayStackedWidget)
         self.StatusWidget = QtWidgets.QWidget(Form)
