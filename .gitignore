@@ -2,3 +2,6 @@
 *__pycache__
 *test/all_index
 *test/*
+dist/*
+build/*
+YMAssistant.spec
