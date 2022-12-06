@@ -8,7 +8,8 @@ from PyQt5.QtGui import QIcon
 from PyQt5.QtWebEngineWidgets import QWebEngineView
 import threading
 import time, datetime
-
+sys.path.append(os.getcwd() + os.path.sep + "thirdparty")
+from netron.server import start
 from ui.FlatWidget import FlatWidget
 import ui.Ui_MainFrame
 
@@ -42,10 +43,11 @@ class MainFrame(QObject):
         self.view_layout = QVBoxLayout(self.MainWindow_.ViewWidget)
         self.view_layout.setContentsMargins(0, 0, 0, 0)
         self.browser = QWebEngineView()
-        self.netron_file = os.getcwd() + os.path.sep + "thirdparty/netron/index.html"
         self.view_layout.addWidget(self.browser)
-        self.browser.load(QUrl.fromLocalFile(self.netron_file))
-
+        
+        self.address = start(None, None, browse=False)
+        url_address = "http://{}:{}".format(self.address[0], self.address[1])
+        self.browser.load(QUrl(url_address))
 
     # ----------------------------------------- UI -----------------------------------------
     def Maximized(self):
