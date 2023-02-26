@@ -13,6 +13,7 @@ from netron.server import start
 from ui.FlatWidget import FlatWidget
 import ui.Ui_MainFrame
 from functools import partial
+from pyqtconsole.console import PythonConsole
 
 def timestr(d):
     if len(str(d))==1:
@@ -53,6 +54,8 @@ class MainFrame(QObject):
         self.address = start(None, None, browse=False)
         url_address = "http://{}:{}".format(self.address[0], self.address[1])
         self.browser.load(QUrl(url_address))
+
+        self.CreteTernimal()
 
     # ----------------------------------------- UI -----------------------------------------
     def Maximized(self):
@@ -100,6 +103,11 @@ class MainFrame(QObject):
                 self.MenuToolButtons[i].setStyleSheet(menu_clicked_style_str)
             else:
                 self.MenuToolButtons[i].setStyleSheet(menu_style_str)
+
+    def CreteTernimal(self):
+        console = PythonConsole(self.MainWindow_.TernimalWidget)
+        # console.show()
+        console.eval_in_thread()
 
     # ----------------------------------------- UI end ----------------------------------------
     def SetCurrentTime(self):
